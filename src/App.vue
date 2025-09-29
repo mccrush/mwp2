@@ -8,9 +8,11 @@ import TheHeader from './shared/components/blocks/TheHeader.vue'
 import TheFooter from './shared/components/blocks/TheFooter.vue'
 import HomePage from './modules/home/HomePage.vue'
 import LoginPage from './modules/login/LoginPage.vue'
+import ProjectsPage from './modules/projects/ProjectsPage.vue'
 
 const viewComponents = {
-  HomePage
+  HomePage,
+  ProjectsPage
 }
 
 const routerStore = useRouterStore()
@@ -20,7 +22,7 @@ const activeComponent = computed(() => {
   if (!currentUserStore.isLoggedIn) {
     return LoginPage
   }
-  return viewComponents[routerStore.activeView] || HomePage
+  return viewComponents[routerStore.activeView] || ProjectsPage
 })
 </script>
 
