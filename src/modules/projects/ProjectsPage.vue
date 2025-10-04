@@ -28,7 +28,7 @@ const createProject = async () => {
 
 <template>
   <div>
-    <div>ProjectsPage</div>
+    <!-- <div>ProjectsPage</div> -->
     <div>
       <input
         class="form-control"
@@ -42,12 +42,10 @@ const createProject = async () => {
         type="button"
         :disabled="!newProjectName.length"
         @click="createProject"
-      >
-        Create project
-      </button>
+      ></button>
     </div>
     <div>
-      <div>Total projects: {{ projectsStore.projectsLength }}</div>
+      <!-- <div>Total projects: {{ projectsStore.projectsLength }}</div> -->
       <div v-for="project in projects" :key="project.id">
         {{ project.name }}
       </div>
