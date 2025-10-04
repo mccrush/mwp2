@@ -2,9 +2,11 @@ import { defineStore } from 'pinia'
 import { addItem, getItems } from '../services/database'
 
 export const useProjectsStore = defineStore('projects', {
-    state: () => ({
-        projects: [],
-    }),
+    state: () => {
+        return {
+            projects: [],
+        }
+    },
 
     actions: {
         async getProjects(userId) {
