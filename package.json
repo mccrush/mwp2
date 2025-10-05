@@ -6,7 +6,7 @@
   "author": "mccrush.ru",
   "scripts": {
     "dev": "vite",
-    "test": "vitest",
+    "test": "vitest run",
     "build": "vite build",
     "preview": "vite preview"
   },

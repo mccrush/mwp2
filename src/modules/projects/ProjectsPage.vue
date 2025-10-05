@@ -46,8 +46,10 @@ const createProject = async () => {
     </div>
     <div>
       <!-- <div>Total projects: {{ projectsStore.projectsLength }}</div> -->
-      <div v-for="project in projects" :key="project.id">
-        {{ project.name }}
+      <div id="projects-list">
+        <div v-for="project in projects" :key="project.id" data-test="project">
+          {{ project.name }}
+        </div>
       </div>
     </div>
   </div>

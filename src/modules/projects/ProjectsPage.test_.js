@@ -50,6 +50,8 @@ describe('ProjectsPage.vue', () => {
     // Ожидаем, пока компонент загрузит начальные данные
     await wrapper.vm.$nextTick()
 
+    //const project = wrapper.get('[data-test="project"]')
+
     // Убедимся, что начальные данные отобразились
     expect(wrapper.text()).toContain('Старый проект 1')
 
