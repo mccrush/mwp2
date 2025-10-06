@@ -4,6 +4,8 @@ import { factory_project } from './helpers/factory_project'
 import { useCurrentUserStore } from '../../shared/stores/currentUser'
 import { useProjectsStore } from '../../shared/stores/projects'
 
+import ProjectCreateForm from './components/ProjectCreateForm.vue'
+
 const currentUserStore = useCurrentUserStore()
 const projectsStore = useProjectsStore()
 
@@ -13,37 +15,22 @@ onMounted(async () => {
 
 const projects = computed(() => projectsStore.projects)
 
-const newProjectName = ref('')
+//const newProjectName = ref('')
 
-const createProject = async () => {
+const createProject = async newProjectName => {
   const newProject = factory_project(
     currentUserStore.currentUserId,
     null,
-    newProjectName.value
+    newProjectName
   )
   await projectsStore.addProject(newProject, currentUserStore.currentUserId)
-  newProjectName.value = ''
 }
 </script>
 
 <template>
   <div>
     <!-- <div>ProjectsPage</div> -->
-    <div>
-      <input
-        class="form-control"
-        type="text"
-        v-model.trim="newProjectName"
-        @keyup.enter="createProject"
-      />
-      <br />
-      <button
-        class="btn btn-sm"
-        type="button"
-        :disabled="!newProjectName.length"
-        @click="createProject"
-      ></button>
-    </div>
+    <ProjectCreateForm @create-project="createProject" />
     <div>
       <!-- <div>Total projects: {{ projectsStore.projectsLength }}</div> -->
       <div id="projects-list">

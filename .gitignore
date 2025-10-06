@@ -6,6 +6,7 @@ apiKey.js
 .firebase
 package-lock.json
 pnpm-lock.yaml
+/coverage
 
 # local env files
 .env.local

@@ -23,5 +23,6 @@ export default defineConfig({
   test: {
     globals: true, // Позволяет использовать API Vitest (describe, it, expect) без импорта
     environment: 'jsdom', // Устанавливаем среду эмуляции браузера
+    coverage: { reporter: ['text', 'json', 'html'] },
   },
 })
