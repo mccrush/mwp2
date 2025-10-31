@@ -12,6 +12,7 @@ const projectsStore = useProjectsStore()
 const currentUserId = computed(() => currentUserStore.currentUserId)
 const projects = computed(() => projectsStore.projects)
 
+const mod = ref('create')
 const newProjectName = ref('')
 const currentProject = ref(null)
 
@@ -30,6 +31,26 @@ const createProject = () => {
   projectsStore.addProject({ item: newProject })
 }
 
+const editProject = project => {
+  newProjectName.value = project.name
+  mod.value = 'edit'
+}
+
+const updateProject = () => {
+  currentProject.value.name = newProjectName.value
+  console.log('Project is Update')
+  console.log('Project =', currentProject.value)
+  mod.value = 'create'
+}
+
+const saveProject = () => {
+  if (mod.value === 'create') {
+    createProject()
+  } else {
+    updateProject()
+  }
+}
+
 const setCurrentProject = project => {
   currentProject.value = project
 }
@@ -41,8 +62,9 @@ const setCurrentProject = project => {
     <div class="row">
       <div class="col-6">
         <ProjectCreateForm
-          @create-project="createProject"
+          @save-project="saveProject"
           v-model="newProjectName"
+          :mod="mod"
         />
       </div>
       <div class="col-6">
@@ -56,6 +78,9 @@ const setCurrentProject = project => {
         <div v-for="project in projects" :key="project.id" data-test="project">
           <button class="btn btn-sm" @click="setCurrentProject(project)">
             {{ project.name }}
+          </button>
+          <button class="btn btn-sm ms-2" @click="editProject(project)">
+            Edit
           </button>
         </div>
       </div>

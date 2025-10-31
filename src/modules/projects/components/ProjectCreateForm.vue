@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 
-const emit = defineEmits(['create-project'])
+const emit = defineEmits(['save-project'])
+defineProps({ mod: String })
 
 const newProjectName = defineModel()
 
-const createProject = () => {
-  emit('create-project')
+const saveProject = () => {
+  emit('save-project')
 }
 </script>
 
@@ -16,10 +17,10 @@ const createProject = () => {
       class="form-control"
       type="text"
       v-model.trim="newProjectName"
-      @keyup.enter="createProject"
+      @keyup.enter="saveProject"
     />
-    <button class="btn btn-sm" type="button" @click="createProject">
-      Add Project
+    <button class="btn btn-sm" type="button" @click="saveProject">
+      {{ mod === 'create' ? 'Add Project' : 'Save Project' }}
     </button>
   </div>
 </template>
