@@ -1,8 +1,8 @@
 import { supabase } from '../../supabase/supabaseClient'
 
-const addItem = async (table, item) => {
+const addItem = async ({ table, item }) => {
   try {
-    const { data, error } = await supabase.from(table).insert([item])
+    const { data, error } = await supabase.from(table).insert([item]).select()
     if (error) throw error;
     //console.log('addItem successful data:', data);
     return data;

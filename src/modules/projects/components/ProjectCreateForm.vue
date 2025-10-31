@@ -3,10 +3,10 @@ import { ref } from 'vue'
 
 const emit = defineEmits(['create-project'])
 
-const newProjectName = ref('')
+const newProjectName = defineModel()
 
 const createProject = () => {
-  emit('create-project', newProjectName)
+  emit('create-project')
 }
 </script>
 
@@ -19,6 +19,8 @@ const createProject = () => {
       @keyup.enter="createProject"
     />
     <br />
-    <button class="btn btn-sm" type="button" @click="createProject"></button>
+    <button class="btn btn-sm" type="button" @click="createProject">
+      Add Project
+    </button>
   </div>
 </template>

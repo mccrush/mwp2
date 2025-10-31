@@ -1,8 +1,11 @@
-export const factory_project = (userId = null, companyId = null, name = 'New Project') => {
+export const factory_project = (userId = null, companyId = null, projectName = 'New Project') => {
+  //console.log('userId =', userId);
+  //console.log('projectName =', projectName);
+
   return {
     user_id: userId,
     company_id: companyId,
-    name: name,
+    name: projectName,
     description: '',
   }
 }

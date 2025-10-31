@@ -5,6 +5,7 @@ export const useProjectsStore = defineStore('projects', {
     state: () => {
         return {
             projects: [],
+            loadingProjectsData: false
         }
     },
 
@@ -17,13 +18,23 @@ export const useProjectsStore = defineStore('projects', {
             })
         },
 
-        async addProject(project, userId) {
-            await addItem('projects', project).then(() => {
-                this.getProjects(userId)
-            }).catch(error => {
-                console.error('Error addProject():', error)
-            })
+        // async addProject(project, userId) {
+        //     await addItem('projects', project).then(() => {
+        //         this.getProjects(userId)
+        //     }).catch(error => {
+        //         console.error('Error addProject():', error)
+        //     })
 
+        // },
+
+        async addProject({ item }) {
+            this.loadingProjectsData = true
+            const table = 'projects'
+            const res = await addItem({ table, item })
+            if (res) {
+                this.projects.push(item)
+            }
+            this.loadingProjectsData = false
         }
     },
 

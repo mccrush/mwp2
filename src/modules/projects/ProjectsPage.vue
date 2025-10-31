@@ -9,28 +9,34 @@ import ProjectCreateForm from './components/ProjectCreateForm.vue'
 const currentUserStore = useCurrentUserStore()
 const projectsStore = useProjectsStore()
 
-onMounted(async () => {
-  await projectsStore.getProjects(currentUserStore.currentUserId)
-})
-
+const currentUserId = computed(() => currentUserStore.currentUserId)
 const projects = computed(() => projectsStore.projects)
 
-//const newProjectName = ref('')
+const newProjectName = ref('')
 
-const createProject = async newProjectName => {
+onMounted(async () => {
+  await projectsStore.getProjects(currentUserId.value)
+})
+
+const createProject = () => {
   const newProject = factory_project(
-    currentUserStore.currentUserId,
+    currentUserId.value,
     null,
-    newProjectName
+    newProjectName.value
   )
-  await projectsStore.addProject(newProject, currentUserStore.currentUserId)
+  //console.log('newProject =', newProject)
+
+  projectsStore.addProject({ item: newProject })
 }
 </script>
 
 <template>
   <div>
     <!-- <div>ProjectsPage</div> -->
-    <ProjectCreateForm @create-project="createProject" />
+    <ProjectCreateForm
+      @create-project="createProject"
+      v-model="newProjectName"
+    />
     <div>
       <!-- <div>Total projects: {{ projectsStore.projectsLength }}</div> -->
       <div id="projects-list">
