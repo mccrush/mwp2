@@ -18,7 +18,6 @@ const createProject = () => {
       v-model.trim="newProjectName"
       @keyup.enter="createProject"
     />
-    <br />
     <button class="btn btn-sm" type="button" @click="createProject">
       Add Project
     </button>
