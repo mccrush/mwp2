@@ -1,0 +1,48 @@
+// Переопределение общих стилей Bootstrap
+.btn-close:focus {
+  box-shadow: none;
+}
+
+input::placeholder {
+  color: #6c757d !important;
+}
+
+.opacity-06 {
+  opacity: 0.6;
+}
+
+.cursor-pointer,
+.dropdown-item {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.my-vh100 {
+  height: calc(100vh - 52px);
+  /* Точное число после настройки навбара */
+}
+
+.my-container-992 {
+  max-width: 992px;
+}
+
+.table-striped>tbody>tr>* {
+  color: rgba(222, 226, 230, 0.75) !important;
+}
+
+textarea {
+  font-size: 0.875rem !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

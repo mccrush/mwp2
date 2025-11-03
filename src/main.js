@@ -1,4 +1,5 @@
 import './scss/styles.scss'
+import 'bs-dark-theme'
 
 import { supabase } from './supabase/supabaseClient'
 import { createApp } from 'vue'

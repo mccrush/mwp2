@@ -42,3 +42,7 @@ const activeComponent = computed(() => {
     <!-- <TheMessage /> -->
   </div>
 </template>
+
+<style lang="scss">
+@use './scss/common.scss';
+</style>
