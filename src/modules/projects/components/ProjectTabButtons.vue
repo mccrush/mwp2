@@ -4,6 +4,8 @@ import { dataTabs } from './../helpers/dataTabs'
 import BtnTabTitle from './buttons/BtnTabTitle.vue'
 import BtnAddTabForm from './buttons/BtnAddTabForm.vue'
 
+defineEmits(['set-view-tab'])
+
 defineProps({
   viewTab: {
     type: String,
@@ -27,6 +29,7 @@ defineProps({
             :class="{
               active: tabButton.viewTab === viewTab
             }"
+            @click="$emit('set-view-tab', tabButton.viewTab)"
           >
             {{ tabButton.title }}
           </BtnTabTitle>
