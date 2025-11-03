@@ -39,6 +39,7 @@ const createProject = () => {
   )
 
   projectsStore.addProject({ project: newProject })
+  newProjectName.value = ''
 }
 
 const editProject = () => {
@@ -83,15 +84,18 @@ const deleteProject = projectId => {
           @edit-project="editProject"
           @delete-project="deleteProject"
         />
-      </div>
 
-      <div class="col-12 col-sm-9 col-lg-10">
+        <div class="border-bottom border-black mt-0"></div>
+        <div class="border-top border-dark-subtle mb-2"></div>
+
         <ProjectCreateForm
           @save-project="saveProject"
           v-model="newProjectName"
           :mod="mod"
         />
+      </div>
 
+      <div class="col-12 col-sm-9 col-lg-10">
         <div v-if="currentProject">
           <pre>{{ currentProject }}</pre>
         </div>
