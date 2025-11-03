@@ -7,7 +7,7 @@ import BtnAddTabForm from './buttons/BtnAddTabForm.vue'
 defineEmits(['set-view-tab'])
 
 defineProps({
-  viewTab: {
+  tabView: {
     type: String,
     default: 'TabLinks'
   }
@@ -21,21 +21,21 @@ defineProps({
       <div
         class="col-6 col-md-3 pt-sm-2 pb-sm-2"
         v-for="tabButton in dataTabs"
-        :key="'bt' + tabButton.type"
+        :key="'bt' + tabButton.tabType"
       >
         <div class="btn-group w-100" role="group">
           <BtnTabTitle
             class="w-75"
             :class="{
-              active: tabButton.viewTab === viewTab
+              active: tabButton.tabView === tabView
             }"
-            @click="$emit('set-view-tab', tabButton.viewTab)"
+            @click="$emit('set-view-tab', tabButton.tabView, tabButton.tabType)"
           >
-            {{ tabButton.title }}
+            {{ tabButton.tabTitle }}
           </BtnTabTitle>
           <BtnAddTabForm
             class="d-flex justify-content-center align-items-center w-25"
-            v-if="tabButton.viewTab === viewTab"
+            v-if="tabButton.tabView === tabView"
           />
         </div>
       </div>

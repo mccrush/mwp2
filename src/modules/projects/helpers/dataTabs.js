@@ -1,22 +1,22 @@
 export const dataTabs = [
   {
-    title: 'Ссылки',
-    type: 'links',
-    viewTab: 'TabLinks'
+    tabTitle: 'Ссылки',
+    tabType: 'links',
+    tabView: 'TabLinks'
   },
   {
-    title: 'Пароли',
-    type: 'passwords',
-    viewTab: 'TabPasswords'
+    tabTitle: 'Пароли',
+    tabType: 'passwords',
+    tabView: 'TabPasswords'
   },
   {
-    title: 'Контакты',
-    type: 'contacts',
-    viewTab: 'TabContacts'
+    tabTitle: 'Контакты',
+    tabType: 'contacts',
+    tabView: 'TabContacts'
   },
   {
-    title: 'Задачи',
-    type: 'tasks',
-    viewTab: 'TabTasks'
+    tabTitle: 'Задачи',
+    tabType: 'tasks',
+    tabView: 'TabTasks'
   }
 ]
