@@ -12,12 +12,15 @@ const formsArray = ref([])
 const tabView = ref('TabLinks')
 const tabType = ref('links')
 
-const setViewTab = (tabView, tabType) => {
-  tabView.value = tabView
-  tabType.value = tabType
+const setViewTab = (tabViewV, tabTypeV) => {
+  console.log('setViewTab tabViewV=', tabViewV, ' tabTypeV=', tabTypeV)
+  tabView.value = tabViewV
+  tabType.value = tabTypeV
 }
 
 const getFormsArray = (projectId, tabType) => {
+  console.log('getFormsArray projectId=', projectId, ' tabType=', tabType)
+
   // Каким-то образом из БД получать только те типы форм,
   // которые сейчас активны для проекта
   // Подумать и над оптимизацией. Чтобы не дергать каждый раз
@@ -37,7 +40,7 @@ const getFormsArray = (projectId, tabType) => {
 watch(
   () => tabType,
   newType => {
-    getFormsArray(currentProject.id, newType)
+    getFormsArray(currentProject.id, newType.value)
   },
   { immediate: true }
 )
