@@ -23,4 +23,14 @@ const getItems = async ({ table, userId, select }) => {
   }
 }
 
-export { addItem, getItems }
+const deleteItem = async ({ table, id }) => {
+  try {
+    const { data, error } = await supabase.from(table).delete().eq('id', id).select()
+    if (error) throw error
+    return data[0]
+  } catch (error) {
+    console.error('deleteItem() error = ', error);
+  }
+}
+
+export { addItem, getItems, deleteItem }

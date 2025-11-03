@@ -52,6 +52,10 @@ const saveProject = () => {
   }
 }
 
+const deleteProject = projectId => {
+  projectsStore.deleteProject({ projectId })
+}
+
 const setCurrentProject = project => {
   currentProject.value = project
 }
@@ -82,6 +86,9 @@ const setCurrentProject = project => {
           </button>
           <button class="btn btn-sm ms-2" @click="editProject(project)">
             Edit
+          </button>
+          <button class="btn btn-sm ms-2" @click="deleteProject(project.id)">
+            Del
           </button>
         </div>
       </div>
