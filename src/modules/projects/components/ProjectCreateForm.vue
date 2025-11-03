@@ -1,24 +1,26 @@
 <script setup>
-import { ref } from 'vue'
+//import { ref } from 'vue'
 import BtnTextSlot from './../../../shared/components/buttons/BtnTextSlot.vue'
-import BtnAddProject from './buttons/BtnAddProject.vue'
+import BtnTrash from './../../../shared/components/buttons/BtnTrash.vue'
 
-const emit = defineEmits(['save-project'])
+const emit = defineEmits(['save-project', 'set-mod', 'delete-project'])
+
+defineProps({
+  mod: String,
+  currentProjectId: Number
+})
 
 const newProjectName = defineModel()
 
-const mod = ref('')
-
 const saveProject = () => {
   emit('save-project')
-  mod.value = ''
 }
 </script>
 
 <template>
   <div class="ps-2 pe-2">
     <Transition name="slide-up" mode="out-in">
-      <div v-if="mod === 'create'">
+      <div v-if="mod === 'create' || mod === 'edit'">
         <input
           class="form-control form-control-sm"
           type="text"
@@ -29,9 +31,16 @@ const saveProject = () => {
           @keyup.enter="saveProject"
         />
         <div class="d-flex">
-          <BtnTextSlot class="mt-1 me-1" @click="mod = ''">
+          <BtnTextSlot class="mt-1 me-1" @click="$emit('set-mod', '')">
             Отмена
           </BtnTextSlot>
+          <BtnTrash
+            v-if="mod === 'edit'"
+            class="mt-1 me-1"
+            @click="$emit('delete-project', currentProjectId)"
+          >
+            Удалить
+          </BtnTrash>
           <BtnTextSlot
             class="mt-1"
             :class="{ disabled: !newProjectName }"
@@ -42,7 +51,9 @@ const saveProject = () => {
         </div>
       </div>
 
-      <BtnTextSlot v-else @click="mod = 'create'"> Создать проект </BtnTextSlot>
+      <BtnTextSlot v-else @click="$emit('set-mod', 'create')">
+        Создать проект
+      </BtnTextSlot>
     </Transition>
   </div>
 </template>

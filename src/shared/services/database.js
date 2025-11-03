@@ -4,8 +4,8 @@ const addItem = async ({ table, item }) => {
   try {
     const { data, error } = await supabase.from(table).insert([item]).select()
     if (error) throw error
-    //console.log('addItem successful data:', data)
-    return data
+    //console.log('addItem successful data[0]:', data[0])
+    return data[0]
   } catch (error) {
     console.error('addItem error:', error.message)
     throw error

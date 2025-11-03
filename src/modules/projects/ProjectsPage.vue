@@ -19,7 +19,7 @@ const currentProjectId = computed(() => {
   return 0
 })
 
-const mod = ref('create')
+const mod = ref('')
 const newProjectName = ref('')
 const currentProject = ref(null)
 
@@ -29,6 +29,11 @@ onMounted(async () => {
 
 const setCurrentProject = project => {
   currentProject.value = project
+  mod.value = ''
+}
+
+const setMod = newMod => {
+  mod.value = newMod
 }
 
 const createProject = () => {
@@ -40,6 +45,7 @@ const createProject = () => {
 
   projectsStore.addProject({ project: newProject })
   newProjectName.value = ''
+  mod.value = ''
 }
 
 const editProject = () => {
@@ -50,7 +56,8 @@ const editProject = () => {
 const updateProject = () => {
   currentProject.value.name = newProjectName.value
   projectsStore.updateProject({ project: currentProject.value })
-  mod.value = 'create'
+  newProjectName.value = ''
+  mod.value = ''
 }
 
 const saveProject = () => {
@@ -65,6 +72,8 @@ const deleteProject = projectId => {
   if (confirm('Удалить проект?')) {
     projectsStore.deleteProject({ projectId })
     currentProject.value = null
+    newProjectName.value = ''
+    mod.value = ''
   }
 }
 </script>
@@ -82,15 +91,18 @@ const deleteProject = projectId => {
           :currentProjectId="currentProjectId"
           @set-current-project="setCurrentProject"
           @edit-project="editProject"
-          @delete-project="deleteProject"
         />
 
         <div class="border-bottom border-black mt-0"></div>
         <div class="border-top border-dark-subtle mb-2"></div>
 
         <ProjectCreateForm
-          @save-project="saveProject"
           v-model="newProjectName"
+          :mod="mod"
+          :currentProjectId="currentProjectId"
+          @set-mod="setMod"
+          @save-project="saveProject"
+          @delete-project="deleteProject"
         />
       </div>
 

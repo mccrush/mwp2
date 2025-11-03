@@ -31,11 +31,6 @@ import BtnEdit from './../../../shared/components/buttons/BtnEdit.vue'
         v-if="project.id === currentProjectId"
         @click="$emit('edit-project')"
       />
-      <BtnEdit
-        v-if="project.id === currentProjectId"
-        class="border"
-        @click="$emit('delete-project', project.id)"
-      />
     </div>
   </div>
 </template>
