@@ -25,7 +25,7 @@ export const useProjectsStore = defineStore('projects', {
             this.loadingProjectsData = true
             const res = await addItem({ table: this.table, item: project })
             if (res) {
-                this.projects.push(project)
+                this.projects.push(res)
             }
             this.loadingProjectsData = false
         },
@@ -45,7 +45,7 @@ export const useProjectsStore = defineStore('projects', {
             const res = await updateItem({ table: this.table, item: project })
             if (res) {
                 const index = this.projects.findIndex(i => i.id === project.id)
-                if (index !== -1) this.projects[index] = project
+                if (index !== -1) this.projects[index] = res
             }
             this.loadingProjectsData = false
         }

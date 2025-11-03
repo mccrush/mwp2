@@ -4,7 +4,6 @@ import BtnTextSlot from './../../../shared/components/buttons/BtnTextSlot.vue'
 import BtnAddProject from './buttons/BtnAddProject.vue'
 
 const emit = defineEmits(['save-project'])
-defineProps({ mod: String })
 
 const newProjectName = defineModel()
 

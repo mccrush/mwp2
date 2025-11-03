@@ -91,29 +91,12 @@ const deleteProject = projectId => {
         <ProjectCreateForm
           @save-project="saveProject"
           v-model="newProjectName"
-          :mod="mod"
         />
       </div>
 
       <div class="col-12 col-sm-9 col-lg-10">
         <div v-if="currentProject">
           <pre>{{ currentProject }}</pre>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div id="projects-list" class="mt-3">
-        <div v-for="project in projects" :key="project.id" data-test="project">
-          <button class="btn btn-sm" @click="setCurrentProject(project)">
-            {{ project.name }}
-          </button>
-          <button class="btn btn-sm ms-2" @click="editProject(project)">
-            Edit
-          </button>
-          <button class="btn btn-sm ms-2" @click="deleteProject(project.id)">
-            Del
-          </button>
         </div>
       </div>
     </div>
