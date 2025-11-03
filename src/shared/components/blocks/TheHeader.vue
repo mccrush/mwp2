@@ -13,13 +13,35 @@ const logOut = async () => {
 </script>
 
 <template>
-  <div class="row border-bottom border-black p-2">
-    <div class="col-6 d-flex">
-      <div>MWP2</div>
+  <div class="row border-bottom border-black">
+    <div
+      class="col-sm-3 col-lg-2 d-none d-sm-flex justify-content-start border-end border-dark-subtle pt-2 pb-2"
+    >
+      <img
+        src="/img/logo.png"
+        width="30"
+        height="30"
+        class="logo-image d-inline-block align-top mt-1"
+        alt="Logo MWP"
+        title="Manager of Web Projects"
+      />
+      <div
+        class="cursor-def d-none d-sm-inline-flex text-body-secondary flex-column justify-content-start lh-1 ms-2 mt-1"
+      >
+        <strong>MWP</strong>
+        <div class="d-none d-md-inline-flex">
+          <code class="text-body-secondary">
+            <small>v{{ `3.0.0` }}</small>
+          </code>
+        </div>
+      </div>
       <Transition mode="out-in">
-        <div v-if="loadingProjectsData">
+        <div
+          v-if="loadingProjectsData"
+          class="d-flex align-items-center ms-2 mt-1"
+        >
           <div
-            class="spinner-border spinner-border-sm text-secondary ms-2"
+            class="spinner-border spinner-border-sm text-secondary"
             role="status"
           >
             <span class="visually-hidden">Loading...</span>
@@ -27,7 +49,9 @@ const logOut = async () => {
         </div>
       </Transition>
     </div>
-    <div class="col-6 text-end">
+    <div
+      class="mw-h-50 col-12 col-sm-9 col-lg-10 d-flex justify-content-between align-items-center"
+    >
       <button class="btn btn-sm" @click="logOut">LogOut</button>
     </div>
   </div>
