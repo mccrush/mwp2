@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { addItem, getItems, deleteItem } from '../services/database'
+import { addItem, getItems, deleteItem, updateItem } from '../services/database'
 
 export const useProjectsStore = defineStore('projects', {
     state: () => {
@@ -36,6 +36,16 @@ export const useProjectsStore = defineStore('projects', {
             if (res) {
                 const index = this.projects.findIndex(i => i.id === projectId)
                 if (index !== -1) this.projects.splice(index, 1)
+            }
+            this.loadingProjectsData = false
+        },
+
+        async updateProject({ project }) {
+            this.loadingProjectsData = true
+            const res = await updateItem({ table: this.table, item: project })
+            if (res) {
+                const index = this.projects.findIndex(i => i.id === project.id)
+                if (index !== -1) this.projects[index] = project
             }
             this.loadingProjectsData = false
         }

@@ -21,26 +21,29 @@ onMounted(async () => {
   await projectsStore.getProjects({ userId: currentUserId.value })
 })
 
+const setCurrentProject = project => {
+  currentProject.value = project
+}
+
 const createProject = () => {
   const newProject = factory_project(
     currentUserId.value,
     null,
     newProjectName.value
   )
-  //console.log('newProject =', newProject)
 
   projectsStore.addProject({ project: newProject })
 }
 
 const editProject = project => {
+  currentProject.value = project
   newProjectName.value = project.name
   mod.value = 'edit'
 }
 
 const updateProject = () => {
   currentProject.value.name = newProjectName.value
-  console.log('Project is Update')
-  console.log('Project =', currentProject.value)
+  projectsStore.updateProject({ project: currentProject.value })
   mod.value = 'create'
 }
 
@@ -54,10 +57,6 @@ const saveProject = () => {
 
 const deleteProject = projectId => {
   projectsStore.deleteProject({ projectId })
-}
-
-const setCurrentProject = project => {
-  currentProject.value = project
 }
 </script>
 

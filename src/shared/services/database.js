@@ -33,4 +33,19 @@ const deleteItem = async ({ table, id }) => {
   }
 }
 
-export { addItem, getItems, deleteItem }
+const updateItem = async ({ table, item }) => {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .update(item)
+      .eq('id', item.id)
+      .select()
+
+    if (error) throw error
+    return data[0]
+  } catch (error) {
+    console.error('updateItem() error = ', error);
+  }
+}
+
+export { addItem, getItems, deleteItem, updateItem }
