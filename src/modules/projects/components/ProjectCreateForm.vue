@@ -24,6 +24,7 @@ const saveProject = () => {
         <input
           class="form-control form-control-sm"
           type="text"
+          id="projectCreateForm"
           placeholder="Название проекта"
           minlength="1"
           maxlength="32"

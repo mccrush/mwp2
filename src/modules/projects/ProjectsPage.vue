@@ -34,6 +34,7 @@ const setCurrentProject = project => {
 
 const setMod = newMod => {
   mod.value = newMod
+  if (!newMod) newProjectName.value = ''
 }
 
 const createProject = () => {
