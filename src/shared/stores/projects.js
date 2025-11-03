@@ -4,33 +4,25 @@ import { addItem, getItems } from '../services/database'
 export const useProjectsStore = defineStore('projects', {
     state: () => {
         return {
+            table: 'projects',
             projects: [],
             loadingProjectsData: false
         }
     },
 
     actions: {
-        async getProjects(userId) {
-            await getItems('projects', userId, '*').then(data => {
-                this.projects = data
-            }).catch(error => {
-                console.error('Error getProjects():', error)
-            })
+        async getProjects({ userId }) {
+            this.loadingProjectsData = true
+            const res = await getItems({ table: this.table, userId, select: '*' })
+            if (res) {
+                this.projects = res
+            }
+            this.loadingProjectsData = false
         },
-
-        // async addProject(project, userId) {
-        //     await addItem('projects', project).then(() => {
-        //         this.getProjects(userId)
-        //     }).catch(error => {
-        //         console.error('Error addProject():', error)
-        //     })
-
-        // },
 
         async addProject({ item }) {
             this.loadingProjectsData = true
-            const table = 'projects'
-            const res = await addItem({ table, item })
+            const res = await addItem({ table: this.table, item })
             if (res) {
                 this.projects.push(item)
             }

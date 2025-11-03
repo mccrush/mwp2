@@ -17,7 +17,7 @@ const newProjectName = ref('')
 const currentProject = ref(null)
 
 onMounted(async () => {
-  await projectsStore.getProjects(currentUserId.value)
+  await projectsStore.getProjects({ userId: currentUserId.value })
 })
 
 const createProject = () => {

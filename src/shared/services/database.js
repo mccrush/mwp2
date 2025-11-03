@@ -12,7 +12,7 @@ const addItem = async ({ table, item }) => {
   }
 }
 
-const getItems = async (table, userId, select) => {
+const getItems = async ({ table, userId, select }) => {
   try {
     const { data, error } = await supabase.from(table).select(select).eq('user_id', userId)
     if (error) throw error;
