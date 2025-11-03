@@ -6,6 +6,8 @@ import { useProjectsStore } from '../../shared/stores/projects'
 
 import ProjectCreateForm from './components/ProjectCreateForm.vue'
 import ProjectsList from './components/ProjectsList.vue'
+import ProjectTabButtons from './components/ProjectTabButtons.vue'
+import ProjectForms from './components/ProjectForms.vue'
 
 const currentUserStore = useCurrentUserStore()
 const projectsStore = useProjectsStore()
@@ -109,6 +111,8 @@ const deleteProject = projectId => {
 
       <div class="col-12 col-sm-9 col-lg-10">
         <div v-if="currentProject">
+          <ProjectTabButtons />
+          <ProjectForms />
           <pre>{{ currentProject }}</pre>
         </div>
       </div>

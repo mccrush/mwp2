@@ -11,7 +11,7 @@ import BtnEdit from './../../../shared/components/buttons/BtnEdit.vue'
 </script>
 
 <template>
-  <div class="overflow-y-auto p-2 pt-0">
+  <div class="overflow-y-auto p-2">
     <div
       v-for="project in projects"
       :key="project.id"
