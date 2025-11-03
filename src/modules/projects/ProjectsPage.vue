@@ -29,7 +29,7 @@ const createProject = () => {
   )
   //console.log('newProject =', newProject)
 
-  projectsStore.addProject({ item: newProject })
+  projectsStore.addProject({ project: newProject })
 }
 
 const editProject = project => {

@@ -21,11 +21,11 @@ export const useProjectsStore = defineStore('projects', {
             this.loadingProjectsData = false
         },
 
-        async addProject({ item }) {
+        async addProject({ project }) {
             this.loadingProjectsData = true
-            const res = await addItem({ table: this.table, item })
+            const res = await addItem({ table: this.table, item: project })
             if (res) {
-                this.projects.push(item)
+                this.projects.push(project)
             }
             this.loadingProjectsData = false
         },
