@@ -75,35 +75,16 @@ const setCurrentProject = project => {
 
     <div>
       <!-- <div>Total projects: {{ projectsStore.projectsLength }}</div> -->
-      <Transition name="fade" mode="out-in">
-        <div v-if="loadingProjectsData">Loading...</div>
-        <div v-else id="projects-list" class="mt-3">
-          <div
-            v-for="project in projects"
-            :key="project.id"
-            data-test="project"
-          >
-            <button class="btn btn-sm" @click="setCurrentProject(project)">
-              {{ project.name }}
-            </button>
-            <button class="btn btn-sm ms-2" @click="editProject(project)">
-              Edit
-            </button>
-          </div>
+      <div id="projects-list" class="mt-3">
+        <div v-for="project in projects" :key="project.id" data-test="project">
+          <button class="btn btn-sm" @click="setCurrentProject(project)">
+            {{ project.name }}
+          </button>
+          <button class="btn btn-sm ms-2" @click="editProject(project)">
+            Edit
+          </button>
         </div>
-      </Transition>
+      </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
