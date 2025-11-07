@@ -14,7 +14,7 @@ defineProps({
 <template>
   <div class="row border-top border-dark-subtle p-2">
     <div class="col-12">
-      <Transition mode="out-in">
+      <Transition name="fade" mode="out-in">
         <div v-if="formsArray.length" class="row">
           <div>type {{ type }}</div>
           <!-- Cicle -->
@@ -39,15 +39,3 @@ defineProps({
     </div>
   </div>
 </template>
-
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>

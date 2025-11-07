@@ -34,9 +34,9 @@ const activeComponent = computed(() => {
       <!-- <TheNavbar /> -->
       <TheHeader />
       <div class="row border-top border-dark-subtle"></div>
-      <transition name="fade" mode="out-in">
+      <Transition name="fade" mode="out-in">
         <component :is="activeComponent" />
-      </transition>
+      </Transition>
       <TheFooter />
     </div>
     <!-- <TheMessage /> -->

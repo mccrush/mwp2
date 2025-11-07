@@ -115,7 +115,7 @@ const deleteProject = projectId => {
       </div>
 
       <div class="col-12 col-sm-9 col-lg-10">
-        <Transition mode="out-in">
+        <Transition name="fade" mode="out-in">
           <ProjectWindow
             v-if="currentProjectId"
             :currentProjectId="currentProjectId"
@@ -125,15 +125,3 @@ const deleteProject = projectId => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>

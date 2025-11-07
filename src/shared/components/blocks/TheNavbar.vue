@@ -10,7 +10,7 @@ import TheOffcanvas from './TheOffcanvas.vue'
       class="col-sm-3 col-lg-2 d-none d-sm-flex justify-content-between border-end border-dark-subtle pt-2 pb-2"
     >
       <div>
-        <transition mode="out-in">
+        <Transition name="fade" mode="out-in">
           <TheSpinner v-if="loading || loadingData" />
           <img
             v-else
@@ -21,7 +21,7 @@ import TheOffcanvas from './TheOffcanvas.vue'
             alt="Logo MWP"
             title="Manager of Web Projects"
           />
-        </transition>
+        </Transition>
 
         <span
           class="cursor-def d-none d-sm-inline-block text-body-secondary ms-2 pt-2"
