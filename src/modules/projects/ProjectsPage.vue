@@ -26,11 +26,17 @@ const currentProject = ref(null)
 
 onMounted(async () => {
   await projectsStore.getProjects({ userId: currentUserId.value })
+
+  if ('current-project' in localStorage)
+    currentProject.value = JSON.parse(localStorage.getItem('current-project'))
 })
 
 const setCurrentProject = project => {
+  console.log('setCurrentProject() project =', project)
+
   currentProject.value = project
   mod.value = ''
+  localStorage.setItem('current-project', JSON.stringify(project))
 }
 
 const setMod = newMod => {
@@ -111,8 +117,8 @@ const deleteProject = projectId => {
       <div class="col-12 col-sm-9 col-lg-10">
         <Transition mode="out-in">
           <ProjectWindow
-            v-if="currentProject"
-            :currentProjectId="currentProject.id"
+            v-if="currentProjectId"
+            :currentProjectId="currentProjectId"
           />
         </Transition>
       </div>
