@@ -32,7 +32,7 @@ onMounted(async () => {
 })
 
 const setCurrentProject = project => {
-  console.log('setCurrentProject() project =', project)
+  //console.log('setCurrentProject() project =', project)
 
   currentProject.value = project
   mod.value = ''

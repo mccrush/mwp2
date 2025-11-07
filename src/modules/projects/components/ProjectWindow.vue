@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useLinksStore } from '../../../shared/stores/links'
 import { factory_link } from '../helpers/factory_link'
 
@@ -16,10 +16,20 @@ const formsArray = computed(() => linksStore.links)
 const tabView = ref('TabLinks')
 const tabType = ref('links')
 
+onMounted(() => {
+  if ('tab-view' in localStorage)
+    tabView.value = localStorage.getItem('tab-view')
+
+  if ('tab-type' in localStorage)
+    tabType.value = localStorage.getItem('tab-type')
+})
+
 const setViewTab = (tabViewV, tabTypeV) => {
-  console.log('setViewTab tabViewV=', tabViewV, ' tabTypeV=', tabTypeV)
+  //console.log('setViewTab tabViewV=', tabViewV, ' tabTypeV=', tabTypeV)
   tabView.value = tabViewV
   tabType.value = tabTypeV
+  localStorage.setItem('tab-view', tabViewV)
+  localStorage.setItem('tab-type', tabTypeV)
 }
 
 const createForm = () => {
@@ -29,7 +39,7 @@ const createForm = () => {
 }
 
 const getFormsArray = (projectId, tabType) => {
-  console.log('getFormsArray projectId=', projectId, ' tabType=', tabType)
+  //console.log('getFormsArray projectId=', projectId, ' tabType=', tabType)
 
   linksStore.getLinks({
     projectId
