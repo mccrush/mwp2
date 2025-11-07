@@ -14,7 +14,8 @@ export const useProjectsStore = defineStore('projects', {
         async getProjects({ userId }) {
             this.loadingProjectsData = true
             const select = '*'
-            const res = await getItems({ table: this.table, userId, select })
+            const condition = `user_id.eq.${userId}`
+            const res = await getItems({ table: this.table, select, condition })
             if (res) {
                 this.projects = res
             }

@@ -12,9 +12,9 @@ const addItem = async ({ table, item }) => {
   }
 }
 
-const getItems = async ({ table, userId, select }) => {
+const getItems = async ({ table, select, condition, order = 'created_at', ascending = true }) => {
   try {
-    const { data, error } = await supabase.from(table).select(select).eq('user_id', userId)
+    const { data, error } = await supabase.from(table).select(select).or(condition).order(order, { ascending })
     if (error) throw error
     return data
   } catch (error) {

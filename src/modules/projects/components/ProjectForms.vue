@@ -3,6 +3,10 @@ defineProps({
   type: {
     type: String,
     default: 'links'
+  },
+  formsArray: {
+    type: Array,
+    default: []
   }
 })
 </script>
@@ -10,17 +14,25 @@ defineProps({
 <template>
   <div class="row border-top border-dark-subtle p-2">
     <div class="col-12">
-      <div class="row">
+      <div v-if="formsArray.length" class="row">
         <div>type {{ type }}</div>
         <!-- Cicle -->
-        <div class="col-12 col-md-6 p-2">
+        <div
+          v-for="form in formsArray"
+          :key="form.id"
+          class="col-12 col-md-6 p-2"
+        >
           <div
             class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
           >
-            Forma
+            <h5>{{ form.title }}</h5>
+            <p>ID: {{ form.id }}</p>
           </div>
         </div>
         <!-- -->
+      </div>
+      <div v-else class="row">
+        <div class="col-12">Создайте первую форму</div>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import { dataTabs } from './../helpers/dataTabs'
 import BtnTabTitle from './buttons/BtnTabTitle.vue'
 import BtnAddTabForm from './buttons/BtnAddTabForm.vue'
 
-defineEmits(['set-view-tab'])
+defineEmits(['set-view-tab', 'create-form'])
 
 defineProps({
   tabView: {
@@ -36,6 +36,7 @@ defineProps({
           <BtnAddTabForm
             class="d-flex justify-content-center align-items-center w-25"
             v-if="tabButton.tabView === tabView"
+            @click="$emit('create-form')"
           />
         </div>
       </div>
