@@ -14,26 +14,40 @@ defineProps({
 <template>
   <div class="row border-top border-dark-subtle p-2">
     <div class="col-12">
-      <div v-if="formsArray.length" class="row">
-        <div>type {{ type }}</div>
-        <!-- Cicle -->
-        <div
-          v-for="form in formsArray"
-          :key="form.id"
-          class="col-12 col-md-6 p-2"
-        >
+      <Transition mode="out-in">
+        <div v-if="formsArray.length" class="row">
+          <div>type {{ type }}</div>
+          <!-- Cicle -->
           <div
-            class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
+            v-for="form in formsArray"
+            :key="form.id"
+            class="col-12 col-md-6 p-2"
           >
-            <h5>{{ form.title }}</h5>
-            <p>ID: {{ form.id }}</p>
+            <div
+              class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
+            >
+              <h5>{{ form.title }}</h5>
+              <p>ID: {{ form.id }}</p>
+            </div>
           </div>
+          <!-- -->
         </div>
-        <!-- -->
-      </div>
-      <div v-else class="row">
-        <div class="col-12">Создайте первую форму</div>
-      </div>
+        <div v-else class="row">
+          <div class="col-12">Создайте первую форму</div>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

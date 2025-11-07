@@ -112,7 +112,7 @@ const deleteProject = projectId => {
         <Transition mode="out-in">
           <ProjectWindow
             v-if="currentProject"
-            :currentProject="currentProject"
+            :currentProjectId="currentProject.id"
           />
         </Transition>
       </div>

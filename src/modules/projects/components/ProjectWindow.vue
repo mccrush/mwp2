@@ -6,8 +6,8 @@ import { factory_link } from '../helpers/factory_link'
 import ProjectTabButtons from './../components/ProjectTabButtons.vue'
 import ProjectForms from './../components/ProjectForms.vue'
 
-const { currentProject } = defineProps({
-  currentProject: Object
+const { currentProjectId } = defineProps({
+  currentProjectId: Number
 })
 
 const linksStore = useLinksStore()
@@ -24,7 +24,7 @@ const setViewTab = (tabViewV, tabTypeV) => {
 
 const createForm = () => {
   // Необходимо определять фабрику и Стор по типу формы
-  const newForm = factory_link(currentProject.id)
+  const newForm = factory_link(currentProjectId)
   linksStore.addLinks({ link: newForm })
 }
 
@@ -41,20 +41,20 @@ const getFormsArray = (projectId, tabType) => {
   // БД, а кешировать в сторе или еще как-то
 }
 
-// Если меняется проект, то обновляем массив форм
-// watch(
-//   () => currentProject,
-//   newProject => {
-//     getFormsArray(newProject.id, tabType.value)
-//   },
-//   { immediate: true }
-// )
-
 // Если меняется тип формы, то обновляем массив форм
 watch(
-  () => tabType,
+  () => tabType.value,
   newType => {
-    getFormsArray(currentProject.id, newType.value)
+    getFormsArray(currentProjectId, newType)
+  },
+  { immediate: true }
+)
+
+// Если меняется ID проекта, то обновляем массив форм
+watch(
+  () => currentProjectId,
+  newId => {
+    getFormsArray(newId, tabType.value)
   },
   { immediate: true }
 )
@@ -62,7 +62,7 @@ watch(
 
 <template>
   <div>
-    <pre>{{ currentProject }}</pre>
+    <pre>P_ID: {{ currentProjectId }}</pre>
     <ProjectTabButtons
       :tabView="tabView"
       @set-view-tab="setViewTab"
