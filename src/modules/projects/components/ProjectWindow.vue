@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useItemsStore } from '../../../shared/stores/items'
 import { factory_link } from '../helpers/factory_link'
+import { factory_items } from '../helpers/factory_items'
 
 import ProjectTabButtons from './../components/ProjectTabButtons.vue'
 import ProjectForms from './../components/ProjectForms.vue'
@@ -34,7 +35,8 @@ const setViewTab = (tabViewV, tabTypeV) => {
 
 const createForm = () => {
   // Необходимо определять фабрику и Стор по типу формы
-  const newForm = factory_link(currentProjectId)
+  const newForm = factory_items(tabType.value)
+  newForm.project_id = currentProjectId
   itemsStore.addItem({ item: newForm, table: tabType.value })
 }
 
@@ -45,11 +47,6 @@ const getFormsArray = (projectId, tabType) => {
     projectId,
     table: tabType
   })
-
-  // Каким-то образом из БД получать только те типы форм,
-  // которые сейчас активны для проекта
-  // Подумать и над оптимизацией. Чтобы не дергать каждый раз
-  // БД, а кешировать в сторе или еще как-то
 }
 
 // Если меняется тип формы, то обновляем массив форм
@@ -57,7 +54,6 @@ watch(
   () => tabType.value,
   newType => {
     console.log('newType =', newType)
-
     getFormsArray(currentProjectId, newType)
   },
   { immediate: true }
