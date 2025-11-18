@@ -21,7 +21,7 @@ const logOut = async () => {
       class="col-sm-3 col-lg-2 d-none d-sm-flex justify-content-start border-end border-dark-subtle pt-2 pb-2"
     >
       <img
-        src="/img/logo.png"
+        src="/img/logo.svg"
         width="30"
         height="30"
         class="logo-image d-inline-block align-top mt-1"

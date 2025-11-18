@@ -1,0 +1,38 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m889 628h-1000v-1000h1000z"/>
+		</clipPath>
+		<filter x="-50%" y="-50%" width="200%" height="200%" id="f1" ><feDropShadow dx="0.1736481776669303" dy="-0.984807753012208" stdDeviation="0" flood-color="#3d8bfd" flood-opacity="1"/></filter>
+		<filter x="-50%" y="-50%" width="200%" height="200%" id="f2" ><feDropShadow dx="-0.17364817766693041" dy="0.984807753012208" stdDeviation="0" flood-color="#052c65" flood-opacity="1"/></filter>
+		<linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(112.121,-120.216,79.645,74.282,-43.237,160.609)">
+			<stop offset="0" stop-color="#084298"/>
+			<stop offset="1" stop-color="#0d6efd"/>
+		</linearGradient>
+		<filter x="-50%" y="-50%" width="200%" height="200%" id="f3" ><feDropShadow dx="0.1736481776669303" dy="-0.984807753012208" stdDeviation="0" flood-color="#3d8bfd" flood-opacity="1"/></filter>
+		<filter x="-50%" y="-50%" width="200%" height="200%" id="f4" ><feDropShadow dx="-0.17364817766693041" dy="0.984807753012208" stdDeviation="0" flood-color="#052c65" flood-opacity="1"/></filter>
+		<linearGradient id="g2" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(80.078,-85.859,53.869,50.242,86.025,106.054)">
+			<stop offset="0" stop-color="#084298"/>
+			<stop offset="1" stop-color="#0d6efd"/>
+		</linearGradient>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.s0 { filter: url(#f1) url(#f2);fill: url(#g1) } 
+		.s1 { filter: url(#f3) url(#f4);fill: url(#g2) } 
+	</style>
+	<g id="Background">
+		<g id="&lt;Clip Group&gt;" clip-path="url(#cp1)">
+			<g id="&lt;Group&gt;">
+			</g>
+		</g>
+	</g>
+	<g id="Object">
+		<g id="Logo">
+			<g id="Logogram">
+				<path id="&lt;Path&gt;" class="s0" d="m136 53.01l-35.62 143.18c-2.77 12.98-14.24 22.26-27.52 22.26h-38.8c-8.13 0-14.2-7.5-12.5-15.46l35.62-143.17c2.78-12.99 14.24-22.26 27.52-22.26h38.8c8.14 0 14.2 7.5 12.5 15.45z"/>
+				<path id="&lt;Path&gt;" class="s1" d="m234.88 45.7l-14.7 68.85c-4.6 21.54-23.63 36.93-45.65 36.93h-31.28c-4.29 0-7.48-3.95-6.59-8.14l14.71-68.86c4.6-21.53 23.62-36.92 45.64-36.92h31.29c4.28 0 7.48 3.95 6.58 8.14z"/>
+			</g>
+		</g>
+	</g>
+</svg>

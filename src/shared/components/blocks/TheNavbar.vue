@@ -14,7 +14,7 @@ import TheOffcanvas from './TheOffcanvas.vue'
           <TheSpinner v-if="loading || loadingData" />
           <img
             v-else
-            src="/img/logo.png"
+            src="/img/logo.svg"
             width="30"
             height="30"
             class="logo-image d-inline-block align-top mt-1"
