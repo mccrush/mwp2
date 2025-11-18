@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
-import { useLinksStore } from '../../../shared/stores/links'
+import { useItemsStore } from '../../../shared/stores/items'
 import { factory_link } from '../helpers/factory_link'
 
 import ProjectTabButtons from './../components/ProjectTabButtons.vue'
@@ -10,9 +10,9 @@ const { currentProjectId } = defineProps({
   currentProjectId: Number
 })
 
-const linksStore = useLinksStore()
+const itemsStore = useItemsStore()
 
-const formsArray = computed(() => linksStore.links)
+const formsArray = computed(() => itemsStore.links)
 const tabView = ref('TabLinks')
 const tabType = ref('links')
 
@@ -35,14 +35,15 @@ const setViewTab = (tabViewV, tabTypeV) => {
 const createForm = () => {
   // Необходимо определять фабрику и Стор по типу формы
   const newForm = factory_link(currentProjectId)
-  linksStore.addLinks({ link: newForm })
+  itemsStore.addItem({ item: newForm, table: tabType.value })
 }
 
 const getFormsArray = (projectId, tabType) => {
   //console.log('getFormsArray projectId=', projectId, ' tabType=', tabType)
 
-  linksStore.getLinks({
-    projectId
+  itemsStore.getItems({
+    projectId,
+    table: tabType
   })
 
   // Каким-то образом из БД получать только те типы форм,

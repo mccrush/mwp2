@@ -2,10 +2,13 @@
 import { computed } from 'vue'
 import { logOutUser } from '../../services/auth'
 import { useProjectsStore } from '../../stores/projects'
+import { useItemsStore } from '../../stores/items'
 
 const projectsStore = useProjectsStore()
+const itemsStore = useItemsStore()
 
 const loadingProjectsData = computed(() => projectsStore.loadingProjectsData)
+const loadingItemData = computed(() => itemsStore.loadingItemData)
 
 const logOut = async () => {
   await logOutUser()
@@ -37,7 +40,7 @@ const logOut = async () => {
       </div>
       <Transition name="fade" mode="out-in">
         <div
-          v-if="loadingProjectsData"
+          v-if="loadingProjectsData || loadingItemData"
           class="d-flex align-items-center ms-2 mt-1"
         >
           <div

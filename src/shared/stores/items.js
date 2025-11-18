@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { addItem, getItems, deleteItem, updateItem } from '../services/database'
 
-export const itemsStore = defineStore('items', {
+export const useItemsStore = defineStore('items', {
   state: () => {
     return {
       links: [],
@@ -32,7 +32,7 @@ export const itemsStore = defineStore('items', {
       }
     },
 
-    async addItem({ item }) {
+    async addItem({ item, table }) {
       this.loadingItemData = true
       const res = await addItem({ table, item })
       if (res) {
