@@ -29,7 +29,7 @@ const logOut = async () => {
         class="cursor-def d-none d-sm-inline-flex text-body-secondary flex-column justify-content-start lh-1 ms-2 mt-1"
       >
         <strong>MWP</strong>
-        <div class="d-none d-md-inline-flex">
+        <div class="d-none d-sm-inline-flex">
           <code class="text-body-secondary">
             <small>v{{ `3.0.0` }}</small>
           </code>
