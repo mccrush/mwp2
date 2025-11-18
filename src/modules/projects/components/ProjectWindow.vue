@@ -55,6 +55,8 @@ const getFormsArray = (projectId, tabType) => {
 watch(
   () => tabType.value,
   newType => {
+    console.log('newType =', newType)
+
     getFormsArray(currentProjectId, newType)
   },
   { immediate: true }

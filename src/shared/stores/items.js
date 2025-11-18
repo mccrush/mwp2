@@ -1,0 +1,45 @@
+import { defineStore } from 'pinia'
+import { addItem, getItems, deleteItem, updateItem } from '../services/database'
+
+export const itemsStore = defineStore('items', {
+  state: () => {
+    return {
+      links: [],
+      passwords: [],
+      contacts: [],
+      tasks: [],
+      loadingItemData: false
+    }
+  },
+
+  actions: {
+
+    async getItems({ projectId, table }) {
+      const LSKey = table + '-' + projectId
+
+      if (LSKey in localStorage) {
+        this[table] = JSON.parse(localStorage.getItem(LSKey))
+      } else {
+        this.loadingItemData = true
+        const select = '*'
+        const condition = `project_id.eq.${projectId}`
+        const res = await getItems({ table, select, condition })
+        if (res) {
+          this[table] = res
+          localStorage.setItem(table + '-' + projectId, JSON.stringify(this[table]))
+        }
+        this.loadingItemData = false
+      }
+    },
+
+    async addItem({ item }) {
+      this.loadingItemData = true
+      const res = await addItem({ table, item })
+      if (res) {
+        this[table].push(res)
+        localStorage.setItem(table + '-' + item.project_id, JSON.stringify(this[table]))
+      }
+      this.loadingItemData = false
+    },
+  }
+})
