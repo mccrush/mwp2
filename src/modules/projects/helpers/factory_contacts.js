@@ -1,8 +1,6 @@
 export const factory_contacts = () => {
   return {
     project_id: '',
-    title: 'New Link',
-    url: '',
-    description: '',
+    full_name: 'New Contact'
   }
 }

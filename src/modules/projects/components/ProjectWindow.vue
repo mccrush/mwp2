@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
 import { useItemsStore } from '../../../shared/stores/items'
-import { factory_link } from '../helpers/factory_link'
+//import { factory_link } from '../helpers/factory_link'
 import { factory_items } from '../helpers/factory_items'
 
 import ProjectTabButtons from './../components/ProjectTabButtons.vue'
@@ -13,9 +13,9 @@ const { currentProjectId } = defineProps({
 
 const itemsStore = useItemsStore()
 
-const formsArray = computed(() => itemsStore.links)
 const tabView = ref('TabLinks')
 const tabType = ref('links')
+const formsArray = computed(() => itemsStore[tabType.value])
 
 onMounted(() => {
   if ('tab-view' in localStorage)
@@ -53,7 +53,7 @@ const getFormsArray = (projectId, tabType) => {
 watch(
   () => tabType.value,
   newType => {
-    console.log('newType =', newType)
+    //console.log('newType =', newType)
     getFormsArray(currentProjectId, newType)
   },
   { immediate: true }

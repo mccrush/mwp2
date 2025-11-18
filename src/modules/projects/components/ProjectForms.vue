@@ -27,7 +27,7 @@ defineProps({
               class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
             >
               <h5>{{ form.title }}</h5>
-              <p>ID: {{ form.id }}</p>
+              <p class="m-0">ID: {{ form.id }}</p>
             </div>
           </div>
           <!-- -->

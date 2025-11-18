@@ -16,9 +16,12 @@ export const useItemsStore = defineStore('items', {
 
     async getItems({ projectId, table }) {
       const LSKey = table + '-' + projectId
+      //console.log('getItems LSKey = ', LSKey);
 
       if (LSKey in localStorage) {
         this[table] = JSON.parse(localStorage.getItem(LSKey))
+        //console.log('LS this[table] = ', this[table]);
+
       } else {
         this.loadingItemData = true
         const select = '*'
@@ -26,6 +29,7 @@ export const useItemsStore = defineStore('items', {
         const res = await getItems({ table, select, condition })
         if (res) {
           this[table] = res
+          //console.log('Fetch this[table] = ', this[table]);
           localStorage.setItem(table + '-' + projectId, JSON.stringify(this[table]))
         }
         this.loadingItemData = false
