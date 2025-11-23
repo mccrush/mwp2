@@ -1,8 +1,10 @@
 export const factory_passwords = () => {
   return {
     project_id: '',
-    title: 'New Link',
-    url: '',
+    title: 'New Password',
+    link: '',
+    login: '',
+    password: '',
     description: '',
   }
 }
