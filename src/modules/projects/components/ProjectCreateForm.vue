@@ -2,6 +2,7 @@
 //import { ref } from 'vue'
 import BtnTextSlot from './../../../shared/components/buttons/BtnTextSlot.vue'
 import BtnTrash from './../../../shared/components/buttons/BtnTrash.vue'
+import BtnSave from './../../../shared/components/buttons/BtnSave.vue'
 
 const emit = defineEmits(['save-project', 'set-mod', 'delete-project'])
 
@@ -38,17 +39,19 @@ const saveProject = () => {
           <BtnTrash
             v-if="mod === 'edit'"
             class="mt-1 me-1"
+            title="Удалить"
             @click="$emit('delete-project', currentProjectId)"
           >
             Удалить
           </BtnTrash>
-          <BtnTextSlot
+          <BtnSave
             class="mt-1"
+            title="Сохранить"
             :class="{ disabled: !newProjectName }"
             @click="saveProject"
           >
             Сохранить
-          </BtnTextSlot>
+          </BtnSave>
         </div>
       </div>
 
