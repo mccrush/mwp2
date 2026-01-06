@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  type: {
+  tabType: {
     type: String,
     default: 'links'
   },
@@ -16,7 +16,7 @@ defineProps({
     <div class="col-12">
       <Transition name="fade" mode="out-in">
         <div v-if="formsArray.length" class="row">
-          <div>type {{ type }}</div>
+          <div>tabType: {{ tabType }}</div>
           <!-- Cicle -->
           <div
             v-for="form in formsArray"
