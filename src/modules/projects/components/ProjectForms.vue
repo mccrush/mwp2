@@ -1,4 +1,8 @@
 <script setup>
+import BtnTrash from '../../../shared/components/buttons/BtnTrash.vue'
+
+defineEmits(['delete-form'])
+
 defineProps({
   tabType: {
     type: String,
@@ -26,7 +30,22 @@ defineProps({
             <div
               class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
             >
-              <h5>{{ form.title }}</h5>
+              <div class="d-flex justify-content-between">
+                <!-- <h5>{{ form.title }}</h5> -->
+                <input
+                  type="text"
+                  class="form-control form-control-sm me-2"
+                  :id="form.id"
+                  v-model="form.title"
+                />
+                <BtnTrash
+                  title="Удалить"
+                  @click="
+                    $emit('delete-form', tabType, form.id, form.project_id)
+                  "
+                />
+              </div>
+
               <p class="m-0">ID: {{ form.id }}</p>
             </div>
           </div>

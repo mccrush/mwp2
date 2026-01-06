@@ -45,5 +45,16 @@ export const useItemsStore = defineStore('items', {
       }
       this.loadingItemData = false
     },
+
+    async deleteItem({ table, itemId, projectId }) {
+      this.loadingItemData = true
+      const res = await deleteItem({ table, id: itemId })
+      if (res) {
+        const index = this[table].findIndex(i => i.id === itemId)
+        if (index !== -1) this[table].splice(index, 1)
+        localStorage.setItem('mwp-' + table + '-' + projectId, JSON.stringify(this[table]))
+      }
+      this.loadingItemData = false
+    },
   }
 })
