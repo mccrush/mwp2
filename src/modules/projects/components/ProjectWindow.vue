@@ -18,10 +18,10 @@ const tabType = ref('links')
 const formsArray = computed(() => itemsStore[tabType.value])
 
 onMounted(() => {
-  if ('tab-view' in localStorage)
+  if ('mwp-tab-view' in localStorage)
     tabView.value = localStorage.getItem('mwp-tab-view')
 
-  if ('tab-type' in localStorage)
+  if ('mwp-tab-type' in localStorage)
     tabType.value = localStorage.getItem('mwp-tab-type')
 })
 
