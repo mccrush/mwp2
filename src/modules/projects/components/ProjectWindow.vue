@@ -59,9 +59,8 @@ const deleteForm = (table, itemId, projectId) => {
   }
 }
 
-const updateForm = (table, item) => {
+const updateForm = item => {
   itemsStore.updateItem({
-    table,
     item
   })
 }

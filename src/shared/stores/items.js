@@ -36,8 +36,9 @@ export const useItemsStore = defineStore('items', {
       }
     },
 
-    async addItem({ item, table }) {
+    async addItem({ item }) {
       this.loadingItemData = true
+      const table = item.type
       const res = await addItem({ table, item })
       if (res) {
         this[table].push(res)
@@ -57,8 +58,9 @@ export const useItemsStore = defineStore('items', {
       this.loadingItemData = false
     },
 
-    async updateItem({ table, item }) {
+    async updateItem({ item }) {
       this.loadingItemData = true
+      const table = item.type
       const res = await updateItem({ table, item })
       if (res) {
         const index = this[table].findIndex(i => i.id === item.id)
