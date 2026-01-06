@@ -25,7 +25,7 @@ import BtnEdit from './../../../shared/components/buttons/BtnEdit.vue'
         }"
         @click="$emit('set-current-project', project)"
       >
-        {{ project.name }}
+        {{ project.title }}
       </BtnProjectTitle>
       <BtnEdit
         v-if="project.id === currentProjectId"

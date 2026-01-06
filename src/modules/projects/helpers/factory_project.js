@@ -3,9 +3,10 @@ export const factory_project = (userId = null, companyId = null, projectName = '
   //console.log('projectName =', projectName);
 
   return {
+    type: 'projects',
     user_id: userId,
     company_id: companyId,
-    name: projectName,
+    title: projectName,
     description: '',
   }
 }

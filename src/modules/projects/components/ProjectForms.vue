@@ -37,16 +37,17 @@ defineProps({
                   class="form-control form-control-sm me-2"
                   :id="form.id"
                   v-model="form.title"
-                  @change="$emit('update-form', tabType, form)"
+                  @change="$emit('update-form', form.type, form)"
                 />
                 <BtnTrash
                   title="Удалить"
                   @click="
-                    $emit('delete-form', tabType, form.id, form.project_id)
+                    $emit('delete-form', form.type, form.id, form.project_id)
                   "
                 />
               </div>
 
+              <p class="m-0">Type: {{ form.type }}</p>
               <p class="m-0">ID: {{ form.id }}</p>
             </div>
           </div>
