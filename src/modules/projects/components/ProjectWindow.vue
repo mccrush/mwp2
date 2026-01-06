@@ -59,6 +59,13 @@ const deleteForm = (table, itemId, projectId) => {
   }
 }
 
+const updateForm = (table, item) => {
+  itemsStore.updateItem({
+    table,
+    item
+  })
+}
+
 // Если меняется тип формы, то обновляем массив форм
 watch(
   () => tabType.value,
@@ -91,6 +98,7 @@ watch(
       :tabType="tabType"
       :formsArray="formsArray"
       @delete-form="deleteForm"
+      @update-form="updateForm"
     />
   </div>
 </template>

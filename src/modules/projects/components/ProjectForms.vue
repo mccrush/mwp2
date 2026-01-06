@@ -1,7 +1,7 @@
 <script setup>
 import BtnTrash from '../../../shared/components/buttons/BtnTrash.vue'
 
-defineEmits(['delete-form'])
+defineEmits(['delete-form', 'update-form'])
 
 defineProps({
   tabType: {
@@ -37,6 +37,7 @@ defineProps({
                   class="form-control form-control-sm me-2"
                   :id="form.id"
                   v-model="form.title"
+                  @change="$emit('update-form', tabType, form)"
                 />
                 <BtnTrash
                   title="Удалить"

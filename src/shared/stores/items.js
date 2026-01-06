@@ -56,5 +56,16 @@ export const useItemsStore = defineStore('items', {
       }
       this.loadingItemData = false
     },
+
+    async updateItem({ table, item }) {
+      this.loadingItemData = true
+      const res = await updateItem({ table, item })
+      if (res) {
+        const index = this[table].findIndex(i => i.id === item.id)
+        if (index !== -1) this[table][index] = item
+        localStorage.setItem('mwp-' + table + '-' + item.project_id, JSON.stringify(this[table]))
+      }
+      this.loadingItemData = false
+    },
   }
 })
