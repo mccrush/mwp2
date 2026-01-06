@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRouterStore } from './shared/stores/router'
 import { useCurrentUserStore } from './shared/stores/currentUser'
 
-import TheNavbar from './shared/components/blocks/TheNavbar.vue'
+//import TheNavbar from './shared/components/blocks/TheNavbar.vue'
 import TheHeader from './shared/components/blocks/TheHeader.vue'
 import TheFooter from './shared/components/blocks/TheFooter.vue'
 import HomePage from './modules/home/HomePage.vue'

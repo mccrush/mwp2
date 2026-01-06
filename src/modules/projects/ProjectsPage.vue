@@ -27,8 +27,10 @@ const currentProject = ref(null)
 onMounted(async () => {
   await projectsStore.getProjects({ userId: currentUserId.value })
 
-  if ('current-project' in localStorage)
-    currentProject.value = JSON.parse(localStorage.getItem('current-project'))
+  if ('mwp-current-project' in localStorage)
+    currentProject.value = JSON.parse(
+      localStorage.getItem('mwp-current-project')
+    )
 })
 
 const setCurrentProject = project => {
@@ -36,7 +38,7 @@ const setCurrentProject = project => {
 
   currentProject.value = project
   mod.value = ''
-  localStorage.setItem('current-project', JSON.stringify(project))
+  localStorage.setItem('mwp-current-project', JSON.stringify(project))
 }
 
 const setMod = newMod => {
@@ -82,6 +84,7 @@ const deleteProject = projectId => {
     currentProject.value = null
     newProjectName.value = ''
     mod.value = ''
+    localStorage.removeItem('mwp-current-project')
   }
 }
 </script>

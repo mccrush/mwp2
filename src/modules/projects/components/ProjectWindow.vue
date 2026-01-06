@@ -19,18 +19,18 @@ const formsArray = computed(() => itemsStore[tabType.value])
 
 onMounted(() => {
   if ('tab-view' in localStorage)
-    tabView.value = localStorage.getItem('tab-view')
+    tabView.value = localStorage.getItem('mwp-tab-view')
 
   if ('tab-type' in localStorage)
-    tabType.value = localStorage.getItem('tab-type')
+    tabType.value = localStorage.getItem('mwp-tab-type')
 })
 
 const setViewTab = (tabViewV, tabTypeV) => {
   //console.log('setViewTab tabViewV=', tabViewV, ' tabTypeV=', tabTypeV)
   tabView.value = tabViewV
   tabType.value = tabTypeV
-  localStorage.setItem('tab-view', tabViewV)
-  localStorage.setItem('tab-type', tabTypeV)
+  localStorage.setItem('mwp-tab-view', tabViewV)
+  localStorage.setItem('mwp-tab-type', tabTypeV)
 }
 
 const createForm = () => {

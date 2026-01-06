@@ -13,7 +13,7 @@ export const useLinksStore = defineStore('links', {
   actions: {
 
     async getLinks({ projectId }) {
-      const LSKey = 'links-' + projectId
+      const LSKey = 'mwp-links-' + projectId
 
       if (LSKey in localStorage) {
         this.links = JSON.parse(localStorage.getItem(LSKey))
@@ -24,7 +24,7 @@ export const useLinksStore = defineStore('links', {
         const res = await getItems({ table: this.table, select, condition })
         if (res) {
           this.links = res
-          localStorage.setItem('links-' + projectId, JSON.stringify(this.links))
+          localStorage.setItem('mwp-links-' + projectId, JSON.stringify(this.links))
         }
         this.loadingLinksData = false
       }
@@ -35,7 +35,7 @@ export const useLinksStore = defineStore('links', {
       const res = await addItem({ table: this.table, item: link })
       if (res) {
         this.links.push(res)
-        localStorage.setItem('links-' + link.project_id, JSON.stringify(this.links))
+        localStorage.setItem('mwp-links-' + link.project_id, JSON.stringify(this.links))
       }
       this.loadingLinksData = false
     },
