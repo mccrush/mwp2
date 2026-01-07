@@ -37,6 +37,11 @@ export const useProjectsStore = defineStore('projects', {
             if (res) {
                 const index = this.projects.findIndex(i => i.id === projectId)
                 if (index !== -1) this.projects.splice(index, 1)
+                // Удалить все дочерние формы в LS 
+                localStorage.removeItem('mwp-links-' + projectId)
+                localStorage.removeItem('mwp-passwords-' + projectId)
+                localStorage.removeItem('mwp-contacts-' + projectId)
+                localStorage.removeItem('mwp-tasks-' + projectId)
             }
             this.loadingProjectsData = false
         },
