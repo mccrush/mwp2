@@ -49,22 +49,6 @@ const getFormsArray = (projectId, tabType) => {
   })
 }
 
-const deleteForm = (table, itemId, projectId) => {
-  if (confirm('Удалить форму?')) {
-    itemsStore.deleteItem({
-      table,
-      itemId,
-      projectId
-    })
-  }
-}
-
-const updateForm = item => {
-  itemsStore.updateItem({
-    item
-  })
-}
-
 // Если меняется тип формы, то обновляем массив форм
 watch(
   () => tabType.value,
@@ -93,11 +77,6 @@ watch(
       @set-view-tab="setViewTab"
       @create-form="createForm"
     />
-    <ProjectForms
-      :tabType="tabType"
-      :formsArray="formsArray"
-      @delete-form="deleteForm"
-      @update-form="updateForm"
-    />
+    <ProjectForms :tabType="tabType" :formsArray="formsArray" />
   </div>
 </template>

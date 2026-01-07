@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { useItemsStore } from '../../../shared/stores/items'
 
 import FormLinks from './forms/FormLinks.vue'
 import FormPasswords from './forms/FormPasswords.vue'
@@ -7,8 +8,6 @@ import FormContacts from './forms/FormContacts.vue'
 import FormTasks from './forms/FormTasks.vue'
 
 import BtnTrash from '../../../shared/components/buttons/BtnTrash.vue'
-
-defineEmits(['delete-form', 'update-form'])
 
 const { tabType } = defineProps({
   tabType: {
@@ -20,6 +19,8 @@ const { tabType } = defineProps({
     default: []
   }
 })
+
+const itemsStore = useItemsStore()
 
 const viewComponents = {
   links: FormLinks,
@@ -65,36 +66,6 @@ const updateForm = item => {
             @delete-form="deleteForm"
             @update-form="updateForm"
           />
-
-          <!-- <div
-            v-for="form in formsArray"
-            :key="form.id"
-            class="col-12 col-md-6 p-2"
-          >
-            <div
-              class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
-            >
-              <div class="d-flex justify-content-between">
-                <input
-                  type="text"
-                  class="form-control form-control-sm me-2"
-                  :id="form.id"
-                  v-model="form.title"
-                  @change="$emit('update-form', form)"
-                />
-                <BtnTrash
-                  title="Удалить"
-                  @click="
-                    $emit('delete-form', form.type, form.id, form.project_id)
-                  "
-                />
-              </div>
-
-              <p class="m-0">Type: {{ form.type }}</p>
-              <p class="m-0">ID: {{ form.id }}</p>
-            </div>
-          </div> -->
-          <!-- -->
         </div>
         <div v-else class="row">
           <div class="col-12">Создайте первую форму</div>
