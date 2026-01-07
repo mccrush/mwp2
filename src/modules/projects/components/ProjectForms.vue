@@ -1,9 +1,16 @@
 <script setup>
+import { computed } from 'vue'
+
+import FormLinks from './forms/FormLinks.vue'
+import FormPasswords from './forms/FormPasswords.vue'
+import FormContacts from './forms/FormContacts.vue'
+import FormTasks from './forms/FormTasks.vue'
+
 import BtnTrash from '../../../shared/components/buttons/BtnTrash.vue'
 
 defineEmits(['delete-form', 'update-form'])
 
-defineProps({
+const { tabType } = defineProps({
   tabType: {
     type: String,
     default: 'links'
@@ -13,6 +20,33 @@ defineProps({
     default: []
   }
 })
+
+const viewComponents = {
+  links: FormLinks,
+  passwords: FormPasswords,
+  contacts: FormContacts,
+  tasks: FormTasks
+}
+
+const activeComponent = computed(() => {
+  return viewComponents[tabType] || FormLinks
+})
+
+const deleteForm = (table, itemId, projectId) => {
+  if (confirm('Удалить форму?')) {
+    itemsStore.deleteItem({
+      table,
+      itemId,
+      projectId
+    })
+  }
+}
+
+const updateForm = item => {
+  itemsStore.updateItem({
+    item
+  })
+}
 </script>
 
 <template>
@@ -22,7 +56,17 @@ defineProps({
         <div v-if="formsArray.length" class="row">
           <div>tabType: {{ tabType }}</div>
           <!-- Cicle -->
-          <div
+          <component
+            :is="activeComponent"
+            v-for="form in formsArray"
+            :key="form.id"
+            :item="form"
+            class="col-12 col-md-6 p-2"
+            @delete-form="deleteForm"
+            @update-form="updateForm"
+          />
+
+          <!-- <div
             v-for="form in formsArray"
             :key="form.id"
             class="col-12 col-md-6 p-2"
@@ -31,7 +75,6 @@ defineProps({
               class="border-top border-dark-subtle rounded shadow-sm bg-body-tertiary p-3"
             >
               <div class="d-flex justify-content-between">
-                <!-- <h5>{{ form.title }}</h5> -->
                 <input
                   type="text"
                   class="form-control form-control-sm me-2"
@@ -50,7 +93,7 @@ defineProps({
               <p class="m-0">Type: {{ form.type }}</p>
               <p class="m-0">ID: {{ form.id }}</p>
             </div>
-          </div>
+          </div> -->
           <!-- -->
         </div>
         <div v-else class="row">
